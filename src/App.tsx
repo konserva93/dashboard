@@ -1,25 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Dashboard } from '@components/Dashboard';
+import { DashboardConfiguration } from './types/dashboard';
+import { getDashboards } from '@api/dashboards';
+import React from 'react';
 
 function App() {
+  const dashboards = getDashboards(); // TODO: useDashboardStorage, request on mount
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {dashboards.map((dashboard: DashboardConfiguration, idx: number) => (
+        <Dashboard key={idx} configuration={dashboard} />
+      ))}
+    </>
   );
 }
 
