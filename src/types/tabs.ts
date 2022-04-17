@@ -23,7 +23,7 @@ type DataSetViewType = 'Dashboard';
 
 type DataSetViewProperties = DashboardProperties;
 
-type DashboardProperties = {
+export type DashboardProperties = {
   configurationUrl: string,
 }
 
@@ -37,5 +37,5 @@ type DataSetFilterType = 'OddEven';
 type DataSetFilterProperties = OddEvenProperties;
 
 export type OddEvenProperties = {
-  defaultValue: number,
+  defaultValue?: number,
 }

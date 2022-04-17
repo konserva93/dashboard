@@ -30,7 +30,7 @@ type Toolbar = {
   // buttons: Button[],
 }
 
-type ToolbarFilter = {
+export type ToolbarFilter = {
   type: ToolbarFilterKeys,
   properties?: FilterProperties,
 }
@@ -41,6 +41,8 @@ type FilterProperties = RangeProperties;
 
 type RangeProperties = {
   columnName: string,
-  start: string, // TODO: разделить application и domain типы
-  end: string,
+  defaultValue?: {
+    start: string, // TODO: разделить application и domain типы
+    end: string,
+  }
 }

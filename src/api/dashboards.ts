@@ -1,14 +1,16 @@
 import { DashboardConfiguration } from '../types/dashboard';
 
-export const getDashboard = (): DashboardConfiguration[] => [{
+export const getDashboard = (): DashboardConfiguration => ({
   title: 'Dashboard',
   toolbar: {
     filter: {
       type: 'Range',
       properties: {
         columnName: 'date',
-        start: '2021-08-21T00:00:00.000Z',
-        end: '2021-09-21T00:00:00.000Z',
+        defaultValue: {
+          start: '2021-08-21T00:00:00.000Z',
+          end: '2021-09-21T00:00:00.000Z',
+        },
       },
     },
   },
@@ -68,4 +70,4 @@ export const getDashboard = (): DashboardConfiguration[] => [{
       ],
     },
   },
-}];
+});
