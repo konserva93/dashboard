@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 export function Tabs() {
   const tabs = GetTabs(); // TODO: useTabsStorage, request on mount
   const [selected, setSelected] = useState(0);
-
   return tabs.length
     ? (
       <TabsView defaultId={0} onChange={id => setSelected(id)}>
