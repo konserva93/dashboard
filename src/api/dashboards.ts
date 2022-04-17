@@ -1,11 +1,7 @@
 import { DashboardConfiguration } from '../types/dashboard';
 
-export const getDashboards = (): DashboardConfiguration[] => [{
+export const getDashboard = (): DashboardConfiguration[] => [{
   title: 'Dashboard',
-  dataSource: '',
-  leftPanel: {
-    type: 'OddEven',
-  },
   toolbar: {
     filter: {
       type: 'Range',

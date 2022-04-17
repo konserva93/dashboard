@@ -91,6 +91,12 @@
         "extensions": [ ".js", ".jsx", ".ts", ".tsx" ]
       }
     ],
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        "custom": "ignore"
+      }
+    ],
     "react/no-array-index-key": "off",
     "react/no-unused-prop-types": [
       "warn",

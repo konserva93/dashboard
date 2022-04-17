@@ -1,17 +1,10 @@
 import './App.css';
-import { Dashboard } from '@components/Dashboard';
-import { DashboardConfiguration } from './types/dashboard';
-import { getDashboards } from '@api/dashboards';
+import { Tabs } from '@components/Tabs/Tabs';
 import React from 'react';
 
 function App() {
-  const dashboards = getDashboards(); // TODO: useDashboardStorage, request on mount
   return (
-    <>
-      {dashboards.map((dashboard: DashboardConfiguration, idx: number) => (
-        <Dashboard key={idx} configuration={dashboard} />
-      ))}
-    </>
+    <Tabs />
   );
 }
 

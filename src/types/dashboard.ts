@@ -1,7 +1,5 @@
 export type DashboardConfiguration = {
   title: string,
-  dataSource: string,
-  leftPanel: LeftPanelFilter,
   toolbar: Toolbar,
   view: DataSetView,
 }
@@ -26,24 +24,18 @@ type DataSetColumn = {
   // size: number,
 }
 
-type LeftPanelFilterKeys = 'OddEven';
-
-type LeftPanelFilter = {
-  type: LeftPanelFilterKeys,
-}
-
 type Toolbar = {
   filter: ToolbarFilter,
   // TODO: add buttons support
   // buttons: Button[],
 }
 
-type ToolbarFilterKeys = 'Range';
-
 type ToolbarFilter = {
   type: ToolbarFilterKeys,
   properties?: FilterProperties,
 }
+
+type ToolbarFilterKeys = 'Range';
 
 type FilterProperties = RangeProperties;
 
