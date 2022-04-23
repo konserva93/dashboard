@@ -2,7 +2,7 @@ import { Dashboard } from '@components/Dashboard/Dashboard';
 import { DataAnalysisProperties } from '@src/types/tabs';
 import { DataSet } from '@src/types/dataset';
 import { OddEvenFilter } from '@components/Panels/filters/OddEvenFilter';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 interface IDataAnalysisPanelProps {
   data: DataSet, // use HOC withDataSource
@@ -12,6 +12,8 @@ interface IDataAnalysisPanelProps {
 export function DataAnalysisPanel({ data, properties }: IDataAnalysisPanelProps) {
   const [filteredData, setFilteredData] = useState<DataSet>();
 
+  const handleChange = useCallback((filterFn: (data: DataSet) => DataSet) => setFilteredData(filterFn(data)), [data]);
+
   return (
     <>
       {(() => {
@@ -19,7 +21,7 @@ export function DataAnalysisPanel({ data, properties }: IDataAnalysisPanelProps)
           case 'OddEven': return (
             <OddEvenFilter
               defaultValue={properties.filter?.properties.defaultValue}
-              onChange={filterFn => setFilteredData(filterFn(data))}
+              onChange={handleChange}
             />
           );
           default: return null;

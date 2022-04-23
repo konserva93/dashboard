@@ -1,3 +1,4 @@
+import { Button } from '@blueprintjs/core';
 import React, { useEffect, useState } from 'react';
 
 interface IOptionsListProps {
@@ -17,6 +18,7 @@ export function OptionsList({ options, defaultValue, onChange }: IOptionsListPro
   useEffect(() => {
     onChange(selected);
   }, [selected, onChange]);
+
   return options
     ? (
       <ul>
@@ -24,9 +26,9 @@ export function OptionsList({ options, defaultValue, onChange }: IOptionsListPro
           <li
             key={idx}
           >
-            <button type="button" onClick={() => setSelected(option.value)}>
+            <Button type="button" onClick={() => setSelected(option.value)}>
               {option.title}
-            </button>
+            </Button>
           </li>
         ))}
       </ul>

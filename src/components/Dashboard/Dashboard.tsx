@@ -1,7 +1,7 @@
 import { DataSet } from '@src/types/dataset';
 import { Toolbar } from '@components/Toolbar/Toolbar';
 import { getDashboard } from '@api/dashboards';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 interface IDashboardProps {
   data: DataSet,
@@ -22,11 +22,13 @@ export function Dashboard({ data }: IDashboardProps) {
     }
   }, [data, filterFunction]);
 
+  const handleFilterChange = useCallback((filterFn: (data: DataSet) => DataSet) => setFilterFunction(() => filterFn), []);
+
   return (
     <>
       <Toolbar
         filter={toolbar.filter}
-        onFilterChange={filterFn => setFilterFunction(() => filterFn)}
+        onFilterChange={handleFilterChange}
       />
       {!!filteredData && <ul>{filteredData.map((row, idx) => <li key={idx}>{JSON.stringify(row)}</li>)}</ul>}
     </>

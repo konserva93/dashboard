@@ -33,7 +33,7 @@ export function Tabs({ children, defaultId, onChange }: ITabsProps) {
           ))}
         </S.Tabs>
         {children.map((child: React.ReactElement<ITabProps>) => (
-          React.cloneElement(child.props.panel, { isVisible: child.props.isSelected })
+          React.cloneElement(child.props.panel, { key: child.props.id, isVisible: child.props.isSelected })
         ))}
       </S.Wrapper>
     )
