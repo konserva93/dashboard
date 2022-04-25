@@ -1,6 +1,6 @@
-import { DateRangePicker as Picker } from '@blueprintjs/datetime';
+import { DateRange, DateRangePicker as Picker } from '@blueprintjs/datetime';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 interface IDateRangePickerProps {
   defaultStart?: Date,
@@ -15,11 +15,13 @@ export function DateRangePicker({ defaultStart, defaultEnd, onChange }: IDateRan
     onChange(value);
   }, [value, onChange]);
 
+  const handleDateRangeChange = useCallback((newRange: DateRange) => setValue(newRange), [setValue]);
+
   return (
     <Picker
       shortcuts={false}
       defaultValue={value}
-      onChange={newRange => setValue(newRange)}
+      onChange={handleDateRangeChange}
     />
   );
 }

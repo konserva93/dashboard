@@ -15,7 +15,7 @@ type DataSetViewProperties = {
   columns: Array<DataSetColumn>
 }
 
-type DataSetColumn = {
+export type DataSetColumn = {
   name: string,
   title: string,
   field: string,

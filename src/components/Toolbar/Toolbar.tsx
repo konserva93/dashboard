@@ -1,7 +1,7 @@
 import { DataSet } from '@src/types/dataset';
 import { Range } from '@components/Toolbar/filters/Range';
 import { ToolbarFilter } from '@src/types/dashboard';
-import React from 'react';
+import React, { useCallback } from 'react';
 
 interface IToolbarProps {
   filter: ToolbarFilter,
@@ -9,6 +9,10 @@ interface IToolbarProps {
 }
 
 export function Toolbar({ filter, onFilterChange }: IToolbarProps) {
+  const handleFilterChange = useCallback((filterFn: (data: DataSet, columnName: string) => DataSet) => {
+    onFilterChange(newData => filterFn(newData, filter.properties?.columnName || ''));
+  }, [filter, onFilterChange]);
+
   switch (filter.type) {
     case 'Range': {
       const defaultValue = filter.properties?.defaultValue;
@@ -18,7 +22,7 @@ export function Toolbar({ filter, onFilterChange }: IToolbarProps) {
         <Range
           defaultStart={startDate}
           defaultEnd={endDate}
-          onFilterChange={filterFn => onFilterChange(newData => filterFn(newData, filter.properties?.columnName || ''))}
+          onFilterChange={handleFilterChange}
         />
       );
     }

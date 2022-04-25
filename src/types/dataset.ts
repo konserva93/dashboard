@@ -1,7 +1,5 @@
 export type DataSet = DataSetRow[];
 
-type DataSetRow = DataSetField[];
-
-type DataSetField = {
+type DataSetRow = {
   [key: string]: string | number,
-}
+};
