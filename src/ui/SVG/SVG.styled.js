@@ -9,14 +9,14 @@ const FromHtml = ({ innerHtml, ...props }) => (
 export default FromHtml;
 
 export const SVG = styled(FromHtml)`
-  ${({ customcolor }) => (customcolor
+  ${({ color }) => (color
     ? `&, * {
         &[fill]:not([fill="none"]) {
-          fill: ${customcolor};
+          fill: ${color};
         }
 
         &[stroke]:not([stroke="none"]) {
-          stroke: ${customcolor};
+          stroke: ${color};
         }
       }`
     : '')}

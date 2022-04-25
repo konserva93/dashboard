@@ -8,16 +8,26 @@ interface IButtonProps {
   minimal?: boolean,
   icon?: string,
   rightIcon?: string,
+  iconColor?: string,
   size?: 'small' | 'regular' | 'large',
   text?: string,
+  secondaryText?: string,
+  textAlign?: string,
 }
 
-export function Button({ icon, rightIcon, text, ...rest }: IButtonProps) {
+export function Button({ icon, rightIcon, iconColor, text, secondaryText, ...rest }: IButtonProps) {
   return (
     <S.Button {...rest} hasLeftIcon={!!icon} hasRightIcon={!!rightIcon}>
-      {icon && <SVG name={icon} />}
-      {text && <span>{text}</span>}
-      {rightIcon && <SVG name={rightIcon} />}
+      {icon && <SVG name={icon} color={iconColor} />}
+      {text && (
+        <span>
+          <div>{text}</div>
+          {secondaryText && (
+            <div>{secondaryText}</div>
+          )}
+        </span>
+      )}
+      {rightIcon && <SVG name={rightIcon} color={iconColor} />}
     </S.Button>
   );
 }

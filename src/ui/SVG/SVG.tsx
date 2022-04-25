@@ -7,18 +7,18 @@ import React from 'react';
 interface ISVGProps {
   name: string,
   className?: string,
-  customColor?: string,
+  color?: string,
   height?: number,
   width?: number,
 }
 
-export function SVG({ className, customColor, name, height, width }: ISVGProps) {
+export function SVG({ className, color, name, height, width }: ISVGProps) {
   const innerHtml = IconPaths[name];
   return innerHtml
     ? (
       <S.SVG
         className={className}
-        customcolor={customColor}
+        color={color}
         height={height}
         innerHtml={innerHtml}
         width={width}

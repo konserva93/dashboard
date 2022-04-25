@@ -3,17 +3,24 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   display: flex;
+  grid-gap: 12px;
   flex-direction: row;
   align-items: center;
   border: none;
   border-radius: 10px;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif; // TODO: typography
   cursor: pointer;
   ${({ size }) => {
     switch (size) {
       case 'small': return `
         height: 32px;
         font-size: 13px;
+      `;
+      case 'large': return `
+        height: 56px;
+        border-radius: 99px;
+        padding: 12px 16px;
+        line-height: 28px;
       `;
       case 'regular':
       default: return `
@@ -25,15 +32,22 @@ export const Button = styled.button`
     }
   }}
   
-  ${({ primary }) => (primary
+  ${({ primary, size }) => (primary
     ? `
       box-shadow: 0px 4px 8px rgba(54, 123, 245, 0.16), 0px 4px 4px rgba(54, 123, 245, 0.24);
       color: #367BF5;
       background-color: #fff;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: ${size === 'large' ? '20px' : '14px'};
       font-weight: 600;
-      letter-spacing: 0.75px;
+      letter-spacing: ${size === 'large' ? '0.15px' : '0.75px'};
+    `
+    : null
+  )}
+  
+  ${({ minimal }) => (minimal
+    ? `
+      background-color: transparent;
     `
     : null)}
   
@@ -52,12 +66,25 @@ export const Button = styled.button`
   
   > span {
     flex: 1;
-    text-align: ${({ hasLeftIcon, hasRightIcon }) => {
-    if (hasLeftIcon) {
-      return hasRightIcon ? 'center' : 'right';
+    text-align: ${({ textAlign, hasLeftIcon, hasRightIcon }) => {
+    /* eslint-disable */
+      if (textAlign) {
+        return textAlign;
+      }
+      if (hasLeftIcon) {
+        return hasRightIcon ? 'center' : 'right';
+      }
+      return hasRightIcon ? 'left' : 'center';
+    }};
+    /* eslint-enable */
+    
+    > div:nth-child(2) {
+      color: #5E6366;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      margin-top: 4px;
     }
-    return hasRightIcon ? 'left' : 'center';
-  }};
   }
 }
 `;

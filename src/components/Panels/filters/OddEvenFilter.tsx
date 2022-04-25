@@ -21,9 +21,9 @@ export function OddEvenFilter({ defaultValue = 0, onChange }: IOddEvenFilterProp
   return (
     <OptionsList
       options={[
-        { title: 'Even', value: 2 },
-        { title: 'Odd', value: 1 },
-        { title: 'All', value: 0 },
+        { title: 'Even rows of data', subtitle: 'Display rows 2,4,6 etc', icon: 'chart-donut', value: 2 },
+        { title: 'Odd rows of data', subtitle: 'Display rows 1,3,5 etc', icon: 'check-outline', value: 1 },
+        { title: 'All data', subtitle: 'Display all data', icon: 'print', value: 0 },
       ]}
       defaultValue={defaultValue}
       onChange={handleChange}
