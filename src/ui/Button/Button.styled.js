@@ -7,7 +7,8 @@ export const Button = styled.button`
   align-items: center;
   border: none;
   border-radius: 10px;
-  font-family: Roboto,sans-serif;
+  font-family: Roboto, sans-serif;
+  cursor: pointer;
   ${({ size }) => {
     switch (size) {
       case 'small': return `
