@@ -37,7 +37,7 @@ export function Dashboard({ data }: IDashboardProps) {
           onFilterChange={handleFilterChange}
         />
         {/* use view.type */}
-        {!!filteredData && <Table data={filteredData} columns={configuration.view.properties.columns} /> }
+        {!!filteredData && <Table data={filteredData} columns={configuration.view.properties.columns} search /> }
       </>
     )
     : null;

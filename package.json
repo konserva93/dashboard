@@ -14,6 +14,7 @@
     "@types/react": "^18.0.4",
     "@types/react-dom": "^18.0.0",
     "craco-alias": "^3.0.1",
+    "html-react-parser": "^1.4.12",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
@@ -32,13 +33,15 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
-    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0"
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "file-loader": "^6.2.0"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "npm run build-svg && craco start",
+    "build": "npm run build-svg && craco build",
     "test": "craco test",
-    "lint": "eslint --fix ./src"
+    "lint": "eslint --fix ./src",
+    "build-svg": "node scripts/build-svg.js"
   },
   "eslintConfig": {
     "extends": [
