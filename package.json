@@ -1,4 +1,5 @@
 {
+  "homepage": "http://konserva93.github.io/dashboard",
   "name": "dashboard",
   "version": "0.1.0",
   "private": true,
@@ -36,14 +37,17 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
-    "file-loader": "^6.2.0"
+    "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3"
   },
   "scripts": {
     "start": "npm run build-svg && craco start",
     "build": "npm run build-svg && craco build",
     "test": "craco test",
     "lint": "eslint --fix ./src",
-    "build-svg": "node scripts/build-svg.js"
+    "build-svg": "node scripts/build-svg.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
