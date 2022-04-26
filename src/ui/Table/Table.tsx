@@ -1,8 +1,9 @@
 import * as S from './Table.styled';
 import { DataSet } from '@src/types/dataset';
 import { DataSetColumn } from '@src/types/dashboard';
+import { HeaderChevron } from '@src/ui/Table/HeaderChevron/HeaderChevron';
 import { v4 as uuid } from 'uuid';
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 function getAlignment(type: string) {
   return type === 'number' ? 'right' : 'left';
@@ -14,8 +15,24 @@ interface ITableProps {
   search?: boolean
 }
 
+const sortingDirections = [-1, 1, 0];
+
 export function Table({ data: rawData, columns, search = false }: ITableProps) {
   const [filters, setFilters] = useState<Record<string, string>>({});
+
+  const [sortingColumn, setSortingColumn] = useState<string | undefined>();
+  const [direction, setDirection] = useState(0); // HINT: номер варианта сортировки из списка
+  const currentSorting = useMemo(() => sortingDirections[direction], [direction]);
+
+  const changeSorting = useCallback((columnName: string) => {
+    if (columnName === sortingColumn) {
+      const nextDirection = (direction < (sortingDirections.length - 1)) ? direction + 1 : 0;
+      setDirection(nextDirection);
+    } else {
+      setSortingColumn(columnName);
+      setDirection(0);
+    }
+  }, [sortingColumn, direction]);
 
   const filteredData = useMemo(() => {
     const filteringColumns = Object.keys(filters);
@@ -28,6 +45,15 @@ export function Table({ data: rawData, columns, search = false }: ITableProps) {
   }, [rawData, filters]);
   const displayingColumns = useMemo(() => columns.filter(column => !column.isHidden), [columns]);
 
+  const data = useMemo(() => (sortingColumn && currentSorting !== 0
+    ? [...filteredData].sort((a, b) => {
+      if (a.values[sortingColumn] === b.values[sortingColumn]) {
+        return 0;
+      }
+      return (a.values[sortingColumn] > b.values[sortingColumn] ? currentSorting : -currentSorting);
+    })
+    : filteredData), [filteredData, sortingColumn, currentSorting]);
+
   return (
     <S.Table>
       <S.Header>
@@ -37,14 +63,16 @@ export function Table({ data: rawData, columns, search = false }: ITableProps) {
               key={column.name}
               align={getAlignment(column.type)}
               $size={column.size}
+              onClick={() => changeSorting(column.name)}
             >
-              {column.title}
+              {column.name === sortingColumn && <HeaderChevron sorting={currentSorting} />}
+              <span>{column.title}</span>
             </S.HeaderCell>
           ))}
         </tr>
       </S.Header>
       <tbody>
-        {filteredData.map(row => (
+        {data.map(row => (
           <S.Row key={row.key}>
             {displayingColumns.map(column => (
               <S.Cell

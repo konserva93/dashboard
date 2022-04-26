@@ -41,9 +41,19 @@ export const HeaderCell = styled.th`
   background-color: #E2F0F0;
   overflow: hidden;
   white-space: nowrap;
+  cursor: pointer;
+  vertical-align: middle;
   
   &:not(:first-child) {
     padding-left: 32px;
+  }
+  
+  > * {
+    vertical-align: middle
+  }
+  
+  > :nth-child(2) {
+    margin-left: 4px;
   }
 `;
 

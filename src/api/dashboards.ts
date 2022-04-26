@@ -33,7 +33,7 @@ export const getDashboard = (): DashboardConfiguration => ({
           field: 'summary1',
           type: 'number',
           isHidden: false,
-          size: 118,
+          size: 132,
         },
         {
           name: 'summary2',
@@ -41,7 +41,7 @@ export const getDashboard = (): DashboardConfiguration => ({
           field: 'summary2',
           type: 'number',
           isHidden: false,
-          size: 118,
+          size: 132,
         },
         {
           name: 'summary3',
@@ -49,7 +49,7 @@ export const getDashboard = (): DashboardConfiguration => ({
           field: 'summary3',
           type: 'number',
           isHidden: false,
-          size: 118,
+          size: 132,
         },
         {
           name: 'summary4',
@@ -57,7 +57,7 @@ export const getDashboard = (): DashboardConfiguration => ({
           field: 'summary4',
           type: 'number',
           isHidden: false,
-          size: 118,
+          size: 132,
         },
         {
           name: 'summary5',
@@ -65,7 +65,7 @@ export const getDashboard = (): DashboardConfiguration => ({
           field: 'summary5',
           type: 'number',
           isHidden: false,
-          size: 118,
+          size: 132,
         },
         {
           name: 'date',
