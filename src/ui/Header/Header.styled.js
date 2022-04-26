@@ -4,13 +4,11 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   height: 64px;
-  width: 100%;
   background-color: #fff;
+  flex: 0 0 auto;
 `;
 
 export const LeftSide = styled.div`
-  height: 100%;
-  overflow: hidden;
   display: inline-block;
 `;
 

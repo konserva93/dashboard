@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Header = styled.div`
   height: 43px;
-  width: 100%;
   display: flex;
   margin-bottom: 31px;
+  flex: 0;
 `;
 
 export const Title = styled.span`
@@ -24,4 +24,7 @@ export const ToolbarWrapper = styled.div`
 
 export const ViewWrapper = styled.div`
   padding-right: 64px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 `;

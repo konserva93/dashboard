@@ -19,9 +19,10 @@ export type DataSetColumn = {
   name: string,
   title: string,
   field: string,
-  type: 'number' | 'string' | 'Date', // HINT: в какой тип будут преобразованы полученные данные
+  type: 'number' | 'string' | 'Date',
   isHidden: boolean, // HINT: нужно чтобы сделать фильтрацию по дате, хотя даты в таблице нет
-  // size: number,
+  isPrimary?: boolean,
+  size: number,
 }
 
 type Toolbar = {

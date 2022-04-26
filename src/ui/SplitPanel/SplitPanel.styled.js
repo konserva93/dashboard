@@ -2,17 +2,25 @@ import styled from 'styled-components';
 
 export const Panel = styled.div`
   padding: 12px 56px 28px 64px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
   grid-gap: 76px;
-  overflow: auto;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
 `;
 
 export const ChildWrapper = styled.div`
   &:nth-child(1) {
     width: 260px;
-    flex: 0 0 auto;
   }
   &:nth-child(2) {
-    flex: 1 1 auto;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 43px minmax(0, 1fr);
+    grid-gap: 31px;
+    overflow: hidden;
+    width: 100%;
+    grid-template-columns: minmax(0,1fr);
   }
 `;

@@ -1,7 +1,12 @@
+import * as S from './Table.styled';
 import { DataSet } from '@src/types/dataset';
 import { DataSetColumn } from '@src/types/dashboard';
 import { v4 as uuid } from 'uuid';
 import React, { useMemo, useState } from 'react';
+
+function getAlignment(type: string) {
+  return type === 'number' ? 'right' : 'left';
+}
 
 interface ITableProps {
   data: DataSet,
@@ -24,30 +29,51 @@ export function Table({ data: rawData, columns, search = false }: ITableProps) {
   const displayingColumns = useMemo(() => columns.filter(column => !column.isHidden), [columns]);
 
   return (
-    <table>
-      <thead>
+    <S.Table>
+      <S.Header>
         <tr>
-          {displayingColumns.map(column => <th key={column.name}>{column.title}</th>)}
+          {displayingColumns.map(column => (
+            <S.HeaderCell
+              key={column.name}
+              align={getAlignment(column.type)}
+              $size={column.size}
+            >
+              {column.title}
+            </S.HeaderCell>
+          ))}
         </tr>
-      </thead>
+      </S.Header>
       <tbody>
         {filteredData.map(row => (
-          <tr key={row.key}>
+          <S.Row key={row.key}>
             {displayingColumns.map(column => (
-              <td key={column.name}>{row.values[column.field]}</td>
+              <S.Cell
+                key={column.name}
+                primary={column.isPrimary}
+                align={getAlignment(column.type)}
+                $size={column.size}
+              >
+                {row.values[column.field]}
+              </S.Cell>
             ))}
-          </tr>
+          </S.Row>
         ))}
         {search && (
-          <tr>
+          <S.SearchBar>
             {displayingColumns.map(column => (
-              <td key={column.name}>
-                <input onChange={event => setFilters({ ...filters, [column.name]: event.target.value })} />
-              </td>
+              <S.SearchCell
+                key={column.name}
+                $size={column.size}
+              >
+                <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setFilters({ ...filters, [column.name]: event.target.value });
+                }}
+                />
+              </S.SearchCell>
             ))}
-          </tr>
+          </S.SearchBar>
         )}
       </tbody>
-    </table>
+    </S.Table>
   );
 }
