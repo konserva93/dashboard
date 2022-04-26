@@ -11,20 +11,25 @@ fs.readdir(directoryPath, (err, rawFiles) => {
   }
 
   const files = rawFiles.filter(f => f.match('.svg$')); // Берем только svg
-  const resultObj = {};
+  const svgs = {};
+  const names = [];
 
   for (let i = 0; i < files.length; i+=1) {
     const file = files[i]; // Имя читаемого файла
     const name = file.slice(0, -4); // Имя генерируемой иконки
+    names.push(name);
 
     fs.readFile(path.join(directoryPath, file), 'utf8', (err, data) => {
       if (err) throw err;
 
-      resultObj[name] = data.replace(/(\r\n|\n|\r)/gm, '');
+      svgs[name] = data.replace(/(\r\n|\n|\r)/gm, '');
 
-      if (Object.keys(resultObj).length === files.length) {
+      if (Object.keys(svgs).length === files.length) {
         // Генерируем файл со всеми иконками
-        const result = `/* eslint-disable */ export const IconPaths = ${JSON.stringify(resultObj, null, '  ')};`;
+        names.sort((a, b) => (a > b ? 1 : -1)); // Сортируем иконки по имени
+        const result = `/* eslint-disable */ export const IconPaths = {\r\n`
+        + `${names.map(filename => `"${filename}":${JSON.stringify(svgs[filename])}`).join(',\r\n')}\r\n};`;
+
         fs.writeFile(path.join(directoryPath, 'generated.js'), result, err => {
           if (err) throw err;
         });
