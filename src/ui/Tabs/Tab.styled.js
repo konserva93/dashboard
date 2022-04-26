@@ -5,7 +5,6 @@ export const Tab = styled.div`
   border-bottom: none;
   border-radius: 4px 4px 0 0;
   cursor: pointer;
-  font-family: Roboto, sans-serif; // TODO: typography
   font-style: normal;
   font-size: 16px;
   line-height: 24px;

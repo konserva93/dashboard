@@ -8,13 +8,13 @@ export const Button = styled.button`
   align-items: center;
   border: none;
   border-radius: 10px;
-  font-family: Roboto, sans-serif; // TODO: typography
   cursor: pointer;
   ${({ size }) => {
     switch (size) {
       case 'small': return `
         height: 32px;
         font-size: 13px;
+        border-radius: 4px;
       `;
       case 'large': return `
         height: 56px;

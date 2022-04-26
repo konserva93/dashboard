@@ -4,6 +4,7 @@ export const Panel = styled.div`
   padding: 12px 56px 28px 64px;
   display: flex;
   grid-gap: 76px;
+  overflow: auto;
 `;
 
 export const ChildWrapper = styled.div`
